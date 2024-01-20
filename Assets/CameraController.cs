@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public new Camera camera;
     public GameObject character;
 
     public float sensetivity = 1;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        camera = Camera.main;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         transform.position = Vector3.Lerp(transform.position, character.transform.position, 0.02f);
     }

@@ -10,7 +10,6 @@ public class CharacterController : MonoBehaviour
 
     [Header("Physic Model")] 
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private new CapsuleCollider collider;
 
     private new Camera camera;
     private Plane plane;
@@ -23,7 +22,6 @@ public class CharacterController : MonoBehaviour
         plane = new Plane(Vector3.up, Vector3.zero);
         
         rb = GetComponent<Rigidbody>();
-        collider = GetComponent<CapsuleCollider>();
     }
     
     private void Update()
@@ -67,7 +65,7 @@ public class CharacterController : MonoBehaviour
             plane.Raycast(mousepointRay, out var distance);
             var point = mousepointRay.GetPoint(distance);
             
-            float rotation = Mathf.Atan2(point.x - transform.position.x, point.z - transform.position.z) * Mathf.Rad2Deg;
+            var rotation = Mathf.Atan2(point.x - transform.position.x, point.z - transform.position.z) * Mathf.Rad2Deg;
             LerpRotation(rotation);
         }
     }
@@ -75,6 +73,6 @@ public class CharacterController : MonoBehaviour
     private void LerpRotation(float targetAngle)
     {
         var rot = Quaternion.Euler(0, targetAngle, 0);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, 0.05f);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, 0.1f);
     }
 }
