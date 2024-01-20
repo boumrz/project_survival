@@ -41,8 +41,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Character\CharacterController.cs" />
      <Compile Include="Assets\Inventory\InventorySlotData.cs" />
+     <Compile Include="Assets\Character\CharacterController.cs" />
      <Compile Include="Assets\CameraController.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\Localization\commontypes.ko.txt" />

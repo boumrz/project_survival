@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class CharacterController : MonoBehaviour
 {
@@ -52,10 +51,12 @@ public class CharacterController : MonoBehaviour
         
         if (!Input.GetMouseButton(1))
         {
-            transform.LookAt(transform.position + velocity);
+            if (rb.velocity != Vector3.zero)
+            {
+                float rotation = Mathf.Atan2(velocity.normalized.x, velocity.normalized.z) * Mathf.Rad2Deg;
+                LerpRotation(rotation);
+            }
         }
-        
-        
     }
 
     private void LookAtMousePosition()
@@ -65,10 +66,15 @@ public class CharacterController : MonoBehaviour
             var mousepointRay = camera.ScreenPointToRay(Input.mousePosition);
             plane.Raycast(mousepointRay, out var distance);
             var point = mousepointRay.GetPoint(distance);
-
-            transform.LookAt(point);
-
             
+            float rotation = Mathf.Atan2(point.x - transform.position.x, point.z - transform.position.z) * Mathf.Rad2Deg;
+            LerpRotation(rotation);
         }
+    }
+
+    private void LerpRotation(float targetAngle)
+    {
+        var rot = Quaternion.Euler(0, targetAngle, 0);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, 0.05f);
     }
 }
