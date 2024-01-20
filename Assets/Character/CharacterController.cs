@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CharacterController : MonoBehaviour
 {
@@ -12,8 +13,16 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private new CapsuleCollider collider;
 
+    private new Camera camera;
+    private Plane plane;
+    private Vector3 viewDirection;
+    public GameObject cub;
+
     private void Start()
     {
+        camera = Camera.main;
+        plane = new Plane(Vector3.up, Vector3.zero);
+        
         rb = GetComponent<Rigidbody>();
         collider = GetComponent<CapsuleCollider>();
     }
@@ -21,6 +30,7 @@ public class CharacterController : MonoBehaviour
     private void Update()
     {
         Move();
+        LookAtMousePosition();
     }
     
     private void Move()
@@ -39,5 +49,26 @@ public class CharacterController : MonoBehaviour
         }
         
         rb.velocity = speed * runMultiplier * velocity.normalized;
+        
+        if (!Input.GetMouseButton(1))
+        {
+            transform.LookAt(transform.position + velocity);
+        }
+        
+        
+    }
+
+    private void LookAtMousePosition()
+    {
+        if (Input.GetMouseButton(1))
+        {
+            var mousepointRay = camera.ScreenPointToRay(Input.mousePosition);
+            plane.Raycast(mousepointRay, out var distance);
+            var point = mousepointRay.GetPoint(distance);
+
+            transform.LookAt(point);
+
+            
+        }
     }
 }
