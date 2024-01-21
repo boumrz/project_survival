@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 7d558685b18f2b64ab02f738e511f7f9, type: 2}
 --- !u!1 &980386709
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215c49d02ca698b479c00b5a733ab86b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
   character: {fileID: 1326092809}
   sensetivity: 5
 --- !u!1 &1118414152
@@ -527,13 +526,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6d27e5fb6dc0bb40915c14374f34aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heathpoints: 0
-  staminapoints: 0
   speed: 3
   runMultiplier: 0
   rb: {fileID: 0}
-  collider: {fileID: 0}
-  cub: {fileID: 1127402825}
+  isMove: 0
+  isRun: 0
 --- !u!1 &1504247246
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,7 +548,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!64 &1504247247
 MeshCollider:
@@ -648,8 +645,8 @@ GameObject:
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1795319696
 BoxCollider:

@@ -44,6 +44,15 @@
      <Compile Include="Assets\Inventory\InventorySlotData.cs" />
      <Compile Include="Assets\Character\CharacterController.cs" />
      <Compile Include="Assets\CameraController.cs" />
+     <Compile Include="Assets\Inventory\InventoryData.cs" />
+     <Compile Include="Assets\Inventory\InventoryServise.cs" />
+     <Compile Include="Assets\Inventory\InventoryEventArgs.cs" />
+     <Compile Include="Assets\Inventory\InventoryConfig.cs" />
+     <Compile Include="Assets\Inventory\InventoryExtentions.cs" />
+     <Compile Include="Assets\Character\Character.cs" />
+     <Compile Include="Assets\Character\StatLevel.cs" />
+     <Compile Include="Assets\Character\Health.cs" />
+     <Compile Include="Assets\Character\StatValue.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\Localization\commontypes.ko.txt" />
      <None Include="Library\PackageCache\com.unity.settings-manager@1.0.3\package.json" />
@@ -91,6 +100,7 @@
      <None Include="Library\PackageCache\com.unity.timeline@1.7.6\package.json" />
      <Folder Include="Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\Localization\cm.zh-Hant.txt" />
+     <Folder Include="Assets\Scenes\SampleScene" />
      <Folder Include="Library\PackageCache\com.unity.visualscripting@1.9.1" />
      <None Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.16\ValidationConfig.json" />
      <Folder Include="Library\PackageCache\com.unity.ext.nunit@1.0.6\net35" />

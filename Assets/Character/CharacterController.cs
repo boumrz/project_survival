@@ -1,10 +1,11 @@
+using System;
 using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
+    public Character character;
+    
     [Header("Characteristics")] 
-    public float heathpoints;
-    public float staminapoints;
     public float speed = 5;
     public float runMultiplier;
 
@@ -14,20 +15,28 @@ public class CharacterController : MonoBehaviour
     private new Camera camera;
     private Plane plane;
     private Vector3 viewDirection;
-    public GameObject cub;
 
+    [Header("moveState")] 
+    [SerializeField] private bool isMove;
+    [SerializeField] private bool isRun;
+    
     private void Start()
     {
+        character = new Character();
+        
         camera = Camera.main;
         plane = new Plane(Vector3.up, Vector3.zero);
         
         rb = GetComponent<Rigidbody>();
+        Debug.Log($"level: {character.health.statLevel.level}, exp: {character.health.statLevel.exp}, exp to next level: {character.health.statLevel.expToNextLevel}");
+        Debug.Log($"HP: {character.health.statValue.currentValue}");
     }
     
     private void Update()
     {
         Move();
         LookAtMousePosition();
+
     }
     
     private void Move()
@@ -36,13 +45,17 @@ public class CharacterController : MonoBehaviour
         var horizontalMove = Input.GetAxisRaw("Horizontal") * new Vector3(1, 0, -1);
         var velocity = verticalMove + horizontalMove;
 
+        isMove = velocity != Vector3.zero; 
+        
         if (Input.GetKey(KeyCode.LeftShift))
         {
             runMultiplier = 1.5f;
+            isRun = true;
         }
         else
         {
             runMultiplier = 1;
+            isRun = false;
         }
         
         rb.velocity = speed * runMultiplier * velocity.normalized;
@@ -59,13 +72,14 @@ public class CharacterController : MonoBehaviour
 
     private void LookAtMousePosition()
     {
-        if (Input.GetMouseButton(1))
+        var position = transform.position;
+        if (Input.GetMouseButton(1) && !isRun)
         {
             var mousepointRay = camera.ScreenPointToRay(Input.mousePosition);
             plane.Raycast(mousepointRay, out var distance);
             var point = mousepointRay.GetPoint(distance);
             
-            var rotation = Mathf.Atan2(point.x - transform.position.x, point.z - transform.position.z) * Mathf.Rad2Deg;
+            var rotation = Mathf.Atan2(point.x - position.x, point.z - position.z) * Mathf.Rad2Deg;
             LerpRotation(rotation);
         }
     }
