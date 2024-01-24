@@ -48,7 +48,6 @@
     <Compile Include="Assets\Inventory\InventoryData.cs" />
     <Compile Include="Assets\Inventory\InventoryEventArgs.cs" />
     <Compile Include="Assets\Character\StatValue.cs" />
-    <Compile Include="Assets\CameraController.cs" />
     <Compile Include="Assets\Inventory\InventoryExtentions.cs" />
     <Compile Include="Assets\Character\Character.cs" />
     <Compile Include="Assets\Character\Health.cs" />

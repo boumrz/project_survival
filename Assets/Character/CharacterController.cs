@@ -6,22 +6,27 @@ public class CharacterController : MonoBehaviour
     public Character character;
     
     [Header("Characteristics")] 
-    public float speed = 5;
+    public float speed = 3;
     public float runMultiplier;
 
     [Header("Physic Model")] 
     [SerializeField] private Rigidbody rb;
 
+    public GameObject cameraAnchor;
     private new Camera camera;
     private Plane plane;
     private Vector3 viewDirection;
+    private float scrollSensetivity = 3;
 
-    [Header("moveState")] 
+    [Header("Move State")] 
     [SerializeField] private bool isMove;
     [SerializeField] private bool isRun;
     
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        
         character = new Character();
         
         camera = Camera.main;
@@ -35,18 +40,37 @@ public class CharacterController : MonoBehaviour
     private void Update()
     {
         Move();
-        LookAtMousePosition();
+        //LookAtMousePosition();
 
     }
     
     private void Move()
     {
-        var verticalMove = Input.GetAxisRaw("Vertical") * new Vector3(1, 0, 1);
-        var horizontalMove = Input.GetAxisRaw("Horizontal") * new Vector3(1, 0, -1);
-        var velocity = verticalMove + horizontalMove;
-
-        isMove = velocity != Vector3.zero; 
+        var moveInputForward = Input.GetAxisRaw("Vertical") * rb.transform.forward;
+        var moveInputSide = Input.GetAxisRaw("Horizontal") * rb.transform.right;
+        var angularInputVertical = Input.GetAxisRaw("Mouse Y");
+        var angularInputHorizontal = Input.GetAxisRaw("Mouse X");
+        var scrollInput = Input.GetAxisRaw("Mouse ScrollWheel");
         
+        //Camera movement
+        transform.Rotate(0, angularInputHorizontal, 0);
+        cameraAnchor.transform.Rotate(-angularInputVertical, 0, 0);
+
+        var eulerAngles = cameraAnchor.transform.localEulerAngles;
+        
+        if (eulerAngles.y != 0 || eulerAngles.z != 0)
+        {
+            cameraAnchor.transform.Rotate(angularInputVertical, 0, 0);
+        }
+        
+        camera.transform.Translate(0,0, scrollInput * scrollSensetivity, Space.Self);
+
+        if (camera.transform.localPosition.z is > -1 or < -8)
+        {
+            camera.transform.Translate(0, 0, -scrollInput*scrollSensetivity, Space.Self);
+        }
+        
+        //Character Movement
         if (Input.GetKey(KeyCode.LeftShift))
         {
             runMultiplier = 1.5f;
@@ -57,17 +81,9 @@ public class CharacterController : MonoBehaviour
             runMultiplier = 1;
             isRun = false;
         }
-        
-        rb.velocity = speed * runMultiplier * velocity.normalized;
-        
-        if (!Input.GetMouseButton(1))
-        {
-            if (rb.velocity != Vector3.zero)
-            {
-                float rotation = Mathf.Atan2(velocity.normalized.x, velocity.normalized.z) * Mathf.Rad2Deg;
-                LerpRotation(rotation);
-            }
-        }
+
+        var velocity = Vector3.Normalize(moveInputForward + moveInputSide);
+        rb.velocity = speed * runMultiplier * velocity;
     }
 
     private void LookAtMousePosition()
