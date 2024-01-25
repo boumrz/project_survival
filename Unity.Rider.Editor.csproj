@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\EditorPluginInterop.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\UnitTesting\TestEvent.cs" />
+    <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\StartUpMethodExecutor.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\UnitTesting\TestsCallback.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\ProjectGeneration\GUIDProvider.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\Util\LibcNativeInterop.cs" />
@@ -69,18 +70,17 @@
     <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\Util\SerializableVersion.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\ProjectGeneration\IGUIDGenerator.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\ProjectGeneration\ProjectGeneration.cs" />
+    <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\Util\StringBuilderExtensions.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\ProjectGeneration\IAssemblyNameProvider.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\Util\RiderMenu.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\RiderScriptEditorDataPersisted.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\ProjectGeneration\LastWriteTracker.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\RiderStyles.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\LoggingLevel.cs" />
+    <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\ProjectGeneration\PackageManagerTracker.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\PluginSettings.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\PostProcessors\RiderAssetPostprocessor.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\Util\StringUtils.cs" />
-    <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\StartUpMethodExecutor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\ProjectGeneration\PackageManagerTracker.cs" />
-    <Compile Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\Util\StringBuilderExtensions.cs" />
     <None Include="Library\PackageCache\com.unity.ide.rider@3.0.27\Rider\Editor\com.unity.ide.rider.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.14f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
