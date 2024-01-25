@@ -47,11 +47,12 @@
     <Compile Include="Assets\Character\CharacterController.cs" />
     <Compile Include="Assets\Inventory\InventoryData.cs" />
     <Compile Include="Assets\Inventory\InventoryEventArgs.cs" />
-    <Compile Include="Assets\Character\StatValue.cs" />
+    <Compile Include="Assets\Character\Stats\StatValue.cs" />
     <Compile Include="Assets\Inventory\InventoryExtentions.cs" />
     <Compile Include="Assets\Character\Character.cs" />
-    <Compile Include="Assets\Character\Health.cs" />
-    <Compile Include="Assets\Character\StatLevel.cs" />
+    <Compile Include="Assets\Character\Stats\Health.cs" />
+    <Compile Include="Assets\Character\Stats\StatLevel.cs" />
+    <Compile Include="Assets\Character\Stats\StatType.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.14f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\Variations\mono\Managed\UnityEngine.dll</HintPath>
     </Reference>

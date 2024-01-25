@@ -47,11 +47,12 @@
     <Compile Include="Assets\Character\CharacterController.cs" />
     <Compile Include="Assets\Inventory\InventoryData.cs" />
     <Compile Include="Assets\Inventory\InventoryEventArgs.cs" />
-    <Compile Include="Assets\Character\StatValue.cs" />
+    <Compile Include="Assets\Character\Stats\StatValue.cs" />
     <Compile Include="Assets\Inventory\InventoryExtentions.cs" />
     <Compile Include="Assets\Character\Character.cs" />
-    <Compile Include="Assets\Character\Health.cs" />
-    <Compile Include="Assets\Character\StatLevel.cs" />
+    <Compile Include="Assets\Character\Stats\Health.cs" />
+    <Compile Include="Assets\Character\Stats\StatLevel.cs" />
+    <Compile Include="Assets\Character\Stats\StatType.cs" />
     <None Include="Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\Localization\commontypes.ko.txt" />
     <None Include="Library\PackageCache\com.unity.settings-manager@1.0.3\package.json" />
     <None Include="Library\PackageCache\com.unity.modules.subsystems@1.0.0\package.json" />
