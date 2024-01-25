@@ -1,0 +1,4 @@
+repository "ProjectSurvival@boumrz@cloud"
+  path "/"
+    br "/main"
+    co "/main"
