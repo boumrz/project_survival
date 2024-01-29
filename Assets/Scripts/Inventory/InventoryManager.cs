@@ -5,11 +5,11 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     private bool isOpen;
-    private Camera mainCamera;
+    public Transform character;
 
     public GameObject UIPanel;
     public Transform inventoryPanel;
-    public float reachDistance = 30f;
+    public float reachDistance = 2f;
     public List<InventorySlot> slots = new List<InventorySlot>();
     
     private void Awake() {
@@ -17,7 +17,6 @@ public class InventoryManager : MonoBehaviour
     }
 
     private void Start() {
-        mainCamera = Camera.main;
         for (int i = 0; i < inventoryPanel.childCount; i++) {
             if (inventoryPanel.GetChild(i).GetComponent<InventorySlot>() != null) {
                 slots.Add(inventoryPanel.GetChild(i).GetComponent<InventorySlot>());
@@ -31,16 +30,21 @@ public class InventoryManager : MonoBehaviour
             isOpen = !isOpen;
             if (isOpen) {
                 UIPanel.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             } else {
                 UIPanel.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
             }
         }
 
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
+        Debug.DrawRay(character.position, character.forward * reachDistance, Color.green);
+
         if (Input.GetKeyDown(KeyCode.E)) {
-            if (Physics.Raycast(ray, out hit, reachDistance)) {
+            if (Physics.Raycast(character.position, character.forward, out hit, reachDistance)) {
                 if (hit.collider.gameObject.GetComponent<Item>() != null) {
                     AddItem(hit.collider.gameObject.GetComponent<Item>().item, hit.collider.gameObject.GetComponent<Item>().amount);
                     Destroy(hit.collider.gameObject);
