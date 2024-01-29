@@ -214,6 +214,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2814369895337648526, guid: 3a7e08e30168db44b8131048e5840921, type: 3}
+      propertyPath: oldSlot
+      value: 
+      objectReference: {fileID: 1174107793601243368}
     - target: {fileID: 3285283349605444793, guid: 3a7e08e30168db44b8131048e5840921, type: 3}
       propertyPath: m_Name
       value: Slot (15)
@@ -670,6 +674,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2814369895337648526, guid: 3a7e08e30168db44b8131048e5840921, type: 3}
+      propertyPath: oldSlot
+      value: 
+      objectReference: {fileID: 1174107793601243368}
     - target: {fileID: 3285283349605444793, guid: 3a7e08e30168db44b8131048e5840921, type: 3}
       propertyPath: m_Name
       value: Slot (5)
@@ -3104,8 +3112,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795319695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.75, y: 0.5, z: -4.01}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 5.75, y: 2, z: -4.01}
+  m_LocalScale: {x: 8, y: 4, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -4019,3 +4027,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1919841366017970908, guid: 3a7e08e30168db44b8131048e5840921, type: 3}
   m_PrefabInstance: {fileID: 1174107793601243366}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1174107793601243368 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2667066288183819316, guid: 3a7e08e30168db44b8131048e5840921, type: 3}
+  m_PrefabInstance: {fileID: 1174107793601243366}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbff6d90d2ffda143b89d801acbf7ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -12,6 +12,7 @@ public class CharacterController : MonoBehaviour
     [Header("Physic Model")] 
     [SerializeField] private Rigidbody rb;
     private float distToGround;
+    [SerializeField]private float cameraTargetPosition;
 
     [SerializeField] private Transform cameraAnchorH;
     [SerializeField] private Transform cameraAnchorV;
@@ -36,6 +37,7 @@ public class CharacterController : MonoBehaviour
         cameraTransform = Camera.main!.transform;
         cameraAnchorV = cameraTransform.transform.parent;
         cameraAnchorH = cameraAnchorV.transform.parent;
+        cameraTargetPosition = -cameraTransform.localPosition.z;
         
         rb = GetComponent<Rigidbody>();
         
@@ -65,12 +67,24 @@ public class CharacterController : MonoBehaviour
         {
             cameraAnchorV.Rotate(angularInputVertical, 0, 0);
         }
-
-        cameraTransform.Translate(0, 0, scrollInput * scrollSensetivity, Space.Self);
-
-        if (cameraTransform.localPosition.z is > -1 or < -8)
+        
+        //Camera obstacle check and zoom
+        cameraTargetPosition -= scrollInput * scrollSensetivity;
+        if (cameraTargetPosition is > 8 or < 1)
         {
-            cameraTransform.transform.Translate(0, 0, -scrollInput * scrollSensetivity, Space.Self);
+            cameraTargetPosition += scrollInput * scrollSensetivity;
+        }
+        
+        var hasObstacle = Physics.Raycast(cameraAnchorH.position, cameraTransform.position - cameraAnchorV.position,
+            out var hit, cameraTargetPosition + 1);
+        
+        if (hasObstacle)
+        {
+                cameraTransform.localPosition = Vector3.back * (hit.distance - 1);
+        }
+        else
+        {
+            cameraTransform.localPosition = Vector3.back * cameraTargetPosition;
         }
     }
 
