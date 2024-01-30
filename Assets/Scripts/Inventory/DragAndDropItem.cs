@@ -68,7 +68,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         }
        
     }
-    void NullifySlotData()
+    public void NullifySlotData()
     {
         // убираем значения InventorySlot
         oldSlot.item = null;

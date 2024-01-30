@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    private bool isOpen;
+    public bool isOpen;
     public Transform character;
 
-    public GameObject UIPanel;
+    public GameObject UIBG;
     public Transform inventoryPanel;
     public float reachDistance = 2f;
     public List<InventorySlot> slots = new List<InventorySlot>();
     
     private void Awake() {
-        UIPanel.SetActive(true);
+        UIBG.SetActive(true);
     }
 
     private void Start() {
@@ -22,18 +22,21 @@ public class InventoryManager : MonoBehaviour
                 slots.Add(inventoryPanel.GetChild(i).GetComponent<InventorySlot>());
             } 
         }
-        UIPanel.SetActive(false);
+        UIBG.SetActive(false);
+        inventoryPanel.gameObject.SetActive(false);
     }
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Tab)) {
             isOpen = !isOpen;
             if (isOpen) {
-                UIPanel.SetActive(true);
+                UIBG.SetActive(true);
+                inventoryPanel.gameObject.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             } else {
-                UIPanel.SetActive(false);
+                UIBG.SetActive(false);
+                inventoryPanel.gameObject.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
