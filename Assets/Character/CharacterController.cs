@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterController : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class CharacterController : MonoBehaviour
     public float jumpHeight = 10;
     public float speedMultiplier;
     public Health health;
+    public Stamina stamina;
+    public Image staminaBarFill;
 
     [Header("Physic Model")] 
     [SerializeField] private Rigidbody rb;
@@ -91,15 +94,18 @@ public class CharacterController : MonoBehaviour
 
     private void Move()
     {
+        character.stamina.StaminaRecovery();
+        staminaBarFill.fillAmount = character.stamina.statValue.currentValue / character.stamina.statValue.maxValue;
+
         var moveInputForward = Input.GetAxisRaw("Vertical");
         var moveInputSide = Input.GetAxisRaw("Horizontal");
         
-        
         //MoveState Check
-        if (Input.GetKey(KeyCode.LeftShift) && !isStandby)
+        if (character.stamina.isStaminaSprintChecked() && Input.GetKey(KeyCode.LeftShift) && !isStandby)
         {
             speedMultiplier = 1.5f;
             isRun = true;
+            character.stamina.StaminaChangeSprint();
         }
         else
         {
@@ -133,8 +139,9 @@ public class CharacterController : MonoBehaviour
         }
         
         //Jump
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (character.stamina.isStaminaJumpChecked() && Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
+            character.stamina.StaminaChangeJump();
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }
     }
