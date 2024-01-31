@@ -8,8 +8,6 @@ public class Health
     public Health(float exp = 0)
     {
         statLevel = new StatLevel(exp);
-        statValue = new StatValue(100, 100);
+        statValue = new StatValue(60, 100);
     }
-
-
 }

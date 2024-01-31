@@ -8,6 +8,7 @@ public class CharacterController : MonoBehaviour
     public float speed = 3;
     public float jumpHeight = 10;
     public float speedMultiplier;
+    public Health health;
 
     [Header("Physic Model")] 
     [SerializeField] private Rigidbody rb;
@@ -26,7 +27,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private bool isRun;
     [SerializeField] private bool isGrounded;
     [SerializeField] private bool isStandby;
-    
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -43,8 +44,8 @@ public class CharacterController : MonoBehaviour
         
         isGrounded = true;
         
-        Debug.Log($"level: {character.health.statLevel.level}, exp: {character.health.statLevel.exp}, exp to next level: {character.health.statLevel.expToNextLevel}");
-        Debug.Log($"HP: {character.health.statValue.currentValue}");
+        // Debug.Log($"level: {character.health.statLevel.level}, exp: {character.health.statLevel.exp}, exp to next level: {character.health.statLevel.expToNextLevel}");
+        // Debug.Log($"HP: {character.health.statValue.currentValue}");
     }
 
     private void Update()

@@ -13,12 +13,19 @@ public class QuickslotInventory : MonoBehaviour
     public int currentQuickslotID = 0;
     public Sprite selectedSprite;
     public Sprite notSelectedSprite;
-    public Text healthText;
+    public CharacterController characterController;
+    private Health health;
+    public Image healthBarFill;
+
+    void Start() {
+        health = characterController.character.health;
+    }
 
     // Update is called once per frame
     void Update()
-    {
+    {     
         float mw = Input.GetAxis("Mouse ScrollWheel");
+        healthBarFill.fillAmount = health.statValue.currentValue / health.statValue.maxValue;
         // Используем колесико мышки
         if (mw > 0.1)
         {
@@ -90,7 +97,6 @@ public class QuickslotInventory : MonoBehaviour
         {
             if (quickslotParent.GetChild(currentQuickslotID).GetComponent<InventorySlot>().item != null)
             {
-                Debug.Log("selectedSprite  " + !inventoryManager.isOpen);
                 if (quickslotParent.GetChild(currentQuickslotID).GetComponent<InventorySlot>().item.isConsumeable && !inventoryManager.isOpen && quickslotParent.GetChild(currentQuickslotID).GetComponent<Image>().sprite == selectedSprite)
                 {
                     // Применяем изменения к здоровью (будущем к голоду и жажде) 
@@ -112,16 +118,6 @@ public class QuickslotInventory : MonoBehaviour
 
     private void ChangeCharacteristics()
     {
-        // Если здоровье + добавленное здоровье от предмета меньше или равно 100, то делаем вычисления... 
-        if(int.Parse(healthText.text) + quickslotParent.GetChild(currentQuickslotID).GetComponent<InventorySlot>().item.changeHealth <= 100)
-        {
-            float newHealth = int.Parse(healthText.text) + quickslotParent.GetChild(currentQuickslotID).GetComponent<InventorySlot>().item.changeHealth;
-            healthText.text = newHealth.ToString();
-        }
-        // Иначе, просто ставим здоровье на 100
-        else
-        {
-            healthText.text = "100";
-        }
+        health.statValue.Add(quickslotParent.GetChild(currentQuickslotID).GetComponent<InventorySlot>().item.changeHealth);
     }
 }
