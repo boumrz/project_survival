@@ -22,6 +22,8 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private Transform cameraAnchorV;
     [SerializeField] private Transform cameraTransform;
     public Transform characterAnchor;
+
+    private float lastStaminaSpendTime;
     
     [SerializeField] private float scrollSensetivity = 3;
 
@@ -37,6 +39,8 @@ public class CharacterController : MonoBehaviour
         Cursor.visible = false;
         
         character = new Character();
+        health = character.health;
+        stamina = character.stamina;
 
         cameraTransform = Camera.main!.transform;
         cameraAnchorV = cameraTransform.transform.parent;
@@ -94,18 +98,23 @@ public class CharacterController : MonoBehaviour
 
     private void Move()
     {
-        character.stamina.StaminaRecovery();
-        staminaBarFill.fillAmount = character.stamina.statValue.currentValue / character.stamina.statValue.maxValue;
+        if (Time.time > lastStaminaSpendTime + stamina.staminaDelay)
+        {
+            stamina.StaminaRecovery();
+        }
+        
+        staminaBarFill.fillAmount = stamina.statValue.currentValue / stamina.statValue.maxValue;
 
         var moveInputForward = Input.GetAxisRaw("Vertical");
         var moveInputSide = Input.GetAxisRaw("Horizontal");
         
         //MoveState Check
-        if (character.stamina.isStaminaSprintChecked() && Input.GetKey(KeyCode.LeftShift) && !isStandby)
+        isMove = (moveInputForward != 0 || moveInputSide != 0);
+        
+        if (Input.GetKey(KeyCode.LeftShift) && !isStandby)
         {
             speedMultiplier = 1.5f;
             isRun = true;
-            character.stamina.StaminaChangeSprint();
         }
         else
         {
@@ -132,17 +141,25 @@ public class CharacterController : MonoBehaviour
         }
         else
         {
-            if (velocity.x != 0 && velocity.z != 0)
+            if (isMove)
             {
                 LerpRotateTo(velocity);
             }
         }
+
+        if (isMove && isRun)
+        {
+            stamina.StaminaChangeSprint(out lastStaminaSpendTime);
+        }
         
         //Jump
-        if (character.stamina.isStaminaJumpChecked() && Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            character.stamina.StaminaChangeJump();
-            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+            if (stamina.statValue.currentValue >= 10)
+            {
+                stamina.StaminaChangeJump(out lastStaminaSpendTime);
+                rb.AddForce(jumpHeight * Vector3.up, ForceMode.Impulse);
+            }
         }
     }
 
