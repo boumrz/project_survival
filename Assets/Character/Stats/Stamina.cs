@@ -6,7 +6,7 @@ public class Stamina
 {
     public StatLevel statLevel;
     public StatValue statValue;
-    public float staminaDelay = 2f;
+    public readonly float staminaDelay = 2f;
 
 
     public Stamina(float exp = 0)
@@ -15,7 +15,8 @@ public class Stamina
         statValue = new StatValue(100, 100);
     }
 
-    public void StaminaChangeSprint(out float lastSprintTime) {
+    public void StaminaChangeSprint(out float lastSprintTime) 
+    {
         statValue.Sub(Time.deltaTime * 8f);
         lastSprintTime = Time.time;
     }
@@ -27,13 +28,5 @@ public class Stamina
     public void StaminaChangeJump(out float lastSprintTime) {
         statValue.Sub(10);
         lastSprintTime = Time.time;
-    }
-
-    public bool IsStaminaSprintChecked() {
-        return statValue.currentValue > 0;
-    }
-
-    public bool IsStaminaJumpChecked() {
-        return statValue.currentValue >= 10f;
     }
 }

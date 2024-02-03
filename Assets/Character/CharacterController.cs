@@ -24,8 +24,6 @@ public class CharacterController : MonoBehaviour
     public Transform characterAnchor;
 
     private float lastStaminaSpendTime;
-    
-    [SerializeField] private float scrollSensetivity = 3;
 
     [Header("Move State")] 
     [SerializeField] private bool isMove;
@@ -45,7 +43,7 @@ public class CharacterController : MonoBehaviour
         cameraTransform = Camera.main!.transform;
         cameraAnchorV = cameraTransform.transform.parent;
         cameraAnchorH = cameraAnchorV.transform.parent;
-        cameraTargetPosition = -cameraTransform.localPosition.z;
+        cameraTargetPosition = 4;
         
         rb = GetComponent<Rigidbody>();
         
@@ -77,11 +75,6 @@ public class CharacterController : MonoBehaviour
         }
         
         //Camera obstacle check and zoom
-        cameraTargetPosition -= scrollInput * scrollSensetivity;
-        if (cameraTargetPosition is > 8 or < 1)
-        {
-            cameraTargetPosition += scrollInput * scrollSensetivity;
-        }
         
         var hasObstacle = Physics.Raycast(cameraAnchorH.position, cameraTransform.position - cameraAnchorV.position,
             out var hit, cameraTargetPosition + 1);
