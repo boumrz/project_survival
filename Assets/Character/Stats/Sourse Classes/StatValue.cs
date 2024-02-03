@@ -1,5 +1,3 @@
-using System;
-
 public class StatValue
 {
     public float currentValue { get; private set; }

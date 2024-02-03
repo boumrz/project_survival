@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\Inventory\FoodItem.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
+    <Compile Include="Assets\Character\Stats\Sourse Classes\StatValue.cs" />
     <Compile Include="Assets\Inventory\InventoryExtentions.cs" />
     <Compile Include="Assets\Character\Character.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
@@ -95,8 +96,8 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
-    <Compile Include="Assets\Character\Stats\StatLevel.cs" />
-    <Compile Include="Assets\Character\Stats\StatValue.cs" />
+    <Compile Include="Assets\Character\Stats\Sourse Classes\StatLevel.cs" />
+    <Compile Include="Assets\Character\Stats\Starvation.cs" />
     <None Include="Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\Localization\commontypes.ko.txt" />
     <None Include="Library\PackageCache\com.unity.settings-manager@1.0.3\package.json" />
     <None Include="Library\PackageCache\com.unity.modules.subsystems@1.0.0\package.json" />

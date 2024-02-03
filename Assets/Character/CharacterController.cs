@@ -1,22 +1,26 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CharacterController : MonoBehaviour
 {
     public Character character;
-    
-    [Header("Characteristics")] 
-    public float speed = 3;
+
+    [Header("Characteristics")] public float speed = 3;
     public float jumpHeight = 10;
     public float speedMultiplier;
+
     public Health health;
     public Stamina stamina;
+    public Starvation starvation;
+
     public Image staminaBarFill;
 
-    [Header("Physic Model")] 
-    [SerializeField] private Rigidbody rb;
+    [Header("Physic Model")] [SerializeField]
+    private Rigidbody rb;
+
     private float distToGround;
-    [SerializeField]private float cameraTargetPosition;
+    [SerializeField] private float cameraTargetPosition;
 
     [SerializeField] private Transform cameraAnchorH;
     [SerializeField] private Transform cameraAnchorV;
@@ -25,8 +29,9 @@ public class CharacterController : MonoBehaviour
 
     private float lastStaminaSpendTime;
 
-    [Header("Move State")] 
-    [SerializeField] private bool isMove;
+    [Header("Move State")] [SerializeField]
+    private bool isMove;
+
     [SerializeField] private bool isRun;
     [SerializeField] private bool isGrounded;
     [SerializeField] private bool isStandby;
@@ -35,20 +40,21 @@ public class CharacterController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        
+
         character = new Character();
         health = character.health;
         stamina = character.stamina;
+        starvation = character.starvation;
 
         cameraTransform = Camera.main!.transform;
         cameraAnchorV = cameraTransform.transform.parent;
         cameraAnchorH = cameraAnchorV.transform.parent;
         cameraTargetPosition = 4;
-        
+
         rb = GetComponent<Rigidbody>();
-        
+
         isGrounded = true;
-        
+
         // Debug.Log($"level: {character.health.statLevel.level}, exp: {character.health.statLevel.exp}, exp to next level: {character.health.statLevel.expToNextLevel}");
         // Debug.Log($"HP: {character.health.statValue.currentValue}");
     }
@@ -73,15 +79,15 @@ public class CharacterController : MonoBehaviour
         {
             cameraAnchorV.Rotate(angularInputVertical, 0, 0);
         }
-        
+
         //Camera obstacle check and zoom
-        
+
         var hasObstacle = Physics.Raycast(cameraAnchorH.position, cameraTransform.position - cameraAnchorV.position,
             out var hit, cameraTargetPosition + 1);
-        
+
         if (hasObstacle)
         {
-                cameraTransform.localPosition = Vector3.back * (hit.distance - 1);
+            cameraTransform.localPosition = Vector3.back * (hit.distance - 1);
         }
         else
         {
@@ -95,15 +101,15 @@ public class CharacterController : MonoBehaviour
         {
             stamina.StaminaRecovery();
         }
-        
+
         staminaBarFill.fillAmount = stamina.statValue.currentValue / stamina.statValue.maxValue;
 
         var moveInputForward = Input.GetAxisRaw("Vertical");
         var moveInputSide = Input.GetAxisRaw("Horizontal");
-        
+
         //MoveState Check
         isMove = (moveInputForward != 0 || moveInputSide != 0);
-        
+
         if (Input.GetKey(KeyCode.LeftShift) && !isStandby)
         {
             speedMultiplier = 1.5f;
@@ -124,10 +130,12 @@ public class CharacterController : MonoBehaviour
         {
             isStandby = false;
         }
+
         //Character Movement
-        var velocity = Vector3.Normalize(cameraAnchorH.forward * moveInputForward + cameraAnchorH.right * moveInputSide);
+        var velocity =
+            Vector3.Normalize(cameraAnchorH.forward * moveInputForward + cameraAnchorH.right * moveInputSide);
         rb.velocity = speed * speedMultiplier * velocity + Vector3.up * rb.velocity.y;
-        
+
         if (isStandby)
         {
             LerpRotateTo(cameraAnchorH.forward);
@@ -144,7 +152,7 @@ public class CharacterController : MonoBehaviour
         {
             stamina.StaminaChangeSprint(out lastStaminaSpendTime);
         }
-        
+
         //Jump
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
@@ -160,6 +168,7 @@ public class CharacterController : MonoBehaviour
     {
         isGrounded = true;
     }
+
     private void OnTriggerExit(Collider other)
     {
         isGrounded = false;
