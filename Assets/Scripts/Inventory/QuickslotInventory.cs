@@ -24,7 +24,7 @@ public class QuickslotInventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {     
-        float mw = Input.GetAxis("Mouse ScrollWheel");
+        float mw = -Input.GetAxis("Mouse ScrollWheel");
         healthBarFill.fillAmount = health.statValue.currentValue / health.statValue.maxValue;
         // Используем колесико мышки
         if (mw > 0.1)

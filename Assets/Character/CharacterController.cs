@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +12,7 @@ public class CharacterController : MonoBehaviour
     public Health health;
     public Stamina stamina;
     public Starvation starvation;
+    public Hydration hydration;
 
     public Image staminaBarFill;
 
@@ -45,6 +45,7 @@ public class CharacterController : MonoBehaviour
         health = character.health;
         stamina = character.stamina;
         starvation = character.starvation;
+        hydration = character.hydration;
 
         cameraTransform = Camera.main!.transform;
         cameraAnchorV = cameraTransform.transform.parent;
@@ -64,13 +65,13 @@ public class CharacterController : MonoBehaviour
         CameraRotate();
         Move();
         StarvationReduction(1200);
+        HydrationReduction(1200);
     }
 
     private void CameraRotate()
     {
         var angularInputVertical = Input.GetAxisRaw("Mouse Y");
         var angularInputHorizontal = Input.GetAxisRaw("Mouse X");
-        var scrollInput = Input.GetAxisRaw("Mouse ScrollWheel");
 
         //Camera movement
         cameraAnchorH.Rotate(0, angularInputHorizontal, 0);
@@ -184,6 +185,10 @@ public class CharacterController : MonoBehaviour
     private void StarvationReduction(float time)
     {
         starvation.statValue.Sub(100 / time * Time.deltaTime);
-        Debug.Log(starvation.statValue.currentValue);
+    }
+
+    private void HydrationReduction(float time)
+    {
+        hydration.statValue.Sub(100 / time * Time.deltaTime);
     }
 }

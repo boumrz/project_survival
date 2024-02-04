@@ -10,23 +10,30 @@ public class InventoryManager : MonoBehaviour
     public GameObject UIBG;
     public Transform inventoryPanel;
     public float reachDistance = 2f;
-    public List<InventorySlot> slots = new List<InventorySlot>();
     
-    private void Awake() {
+    public List<InventorySlot> slots;
+    
+    private void Awake() 
+    {
         UIBG.SetActive(true);
     }
 
-    private void Start() {
+    private void Start()
+    {
+        slots = new List<InventorySlot>();
+        
         for (int i = 0; i < inventoryPanel.childCount; i++) {
             if (inventoryPanel.GetChild(i).GetComponent<InventorySlot>() != null) {
                 slots.Add(inventoryPanel.GetChild(i).GetComponent<InventorySlot>());
             } 
         }
+        
         UIBG.SetActive(false);
         inventoryPanel.gameObject.SetActive(false);
     }
 
-    private void Update() {
+    private void Update() 
+    {
         if (Input.GetKeyDown(KeyCode.Tab)) {
             isOpen = !isOpen;
             if (isOpen) {
@@ -46,9 +53,12 @@ public class InventoryManager : MonoBehaviour
 
         Debug.DrawRay(character.position, character.forward * reachDistance, Color.green);
 
-        if (Input.GetKeyDown(KeyCode.E)) {
-            if (Physics.Raycast(character.position, character.forward, out hit, reachDistance)) {
-                if (hit.collider.gameObject.GetComponent<Item>() != null) {
+        if (Input.GetKeyDown(KeyCode.E)) 
+        {
+            if (Physics.Raycast(character.position, character.forward, out hit, reachDistance)) 
+            {
+                if (hit.collider.gameObject.GetComponent<Item>() != null) 
+                {
                     AddItem(hit.collider.gameObject.GetComponent<Item>().item, hit.collider.gameObject.GetComponent<Item>().amount);
                     Destroy(hit.collider.gameObject);
                 }
@@ -56,13 +66,17 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    private void AddItem(ItemScriptableObject _item, int _amount) {
+    private void AddItem(ItemScriptableObject _item, int _amount) 
+    {
         Debug.Log("_item " + _item);
         Debug.Log("_amount " + _amount);
         Debug.Log("slots " + slots);
-        foreach(InventorySlot slot in slots) {
-            if (slot.item == _item) {
-                if (slot.amount + _amount <= _item.maximumAmount) {
+        foreach(InventorySlot slot in slots) 
+        {
+            if (slot.item == _item) 
+            {
+                if (slot.amount + _amount <= _item.maximumAmount) 
+                {
                     slot.amount += _amount;
                     slot.itemAmount.text = slot.amount.ToString();
                     return;
@@ -72,8 +86,10 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        foreach(InventorySlot slot in slots) {
-            if (slot.isEmpty == true) {
+        foreach(InventorySlot slot in slots) 
+        {
+            if (slot.isEmpty == true) 
+            {
                 slot.item = _item;
                 slot.amount = _amount;
                 slot.isEmpty = false;
