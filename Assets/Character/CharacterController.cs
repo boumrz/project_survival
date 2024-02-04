@@ -63,6 +63,7 @@ public class CharacterController : MonoBehaviour
     {
         CameraRotate();
         Move();
+        StarvationReduction(1200);
     }
 
     private void CameraRotate()
@@ -178,5 +179,11 @@ public class CharacterController : MonoBehaviour
     {
         var target = Quaternion.LookRotation(direction);
         characterAnchor.rotation = Quaternion.RotateTowards(characterAnchor.rotation, target, 360 * Time.deltaTime);
+    }
+
+    private void StarvationReduction(float time)
+    {
+        starvation.statValue.Sub(100 / time * Time.deltaTime);
+        Debug.Log(starvation.statValue.currentValue);
     }
 }
