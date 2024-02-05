@@ -162,17 +162,7 @@ namespace Inventory
                     var coords = new Vector2Int(i, j);
                     var slot = inventoryData.slots[coords.x + rowLength * coords.y];
 
-                    if (slot.IsEmpty())
-                    {
-                        continue;
-                    }
-
-                    if (slot.amount >= slot.amount + remainingAmount)
-                    {
-                        continue;
-                    }
-
-                    if (slot.itemID != itemID)
+                    if (slot.IsEmpty() || (slot.amount >= slot.amount + remainingAmount) || slot.itemID != itemID)
                     {
                         continue;
                     }
