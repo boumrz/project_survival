@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UpperBody
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Ankle_L
+    m_Weight: 0
+  - m_Path: Ankle_R
+    m_Weight: 0
+  - m_Path: Armature
+    m_Weight: 1
+  - m_Path: Armature/Bone_Root
+    m_Weight: 1
+  - m_Path: Armature/Bone_Root/Bone_Pelvis
+    m_Weight: 1
+  - m_Path: Armature/Bone_Root/Bone_Pelvis/Bone_Belly
+    m_Weight: 1
+  - m_Path: Armature/Bone_Root/Bone_Pelvis/Bone_Belly/Bone_Chest
+    m_Weight: 1
+  - m_Path: Armature/Bone_Root/Bone_Pelvis/Bone_Belly/Bone_Chest/Bone_neck
+    m_Weight: 1
+  - m_Path: Armature/Bone_Root/Bone_Pelvis/Bone_Belly/Bone_Chest/Bone_neck/Bone_Head
+    m_Weight: 1
+  - m_Path: Armature/Bone_Root/Bone_Pelvis/Bone_Belly/Bone_Chest/Bone_Upperarm_L
+    m_Weight: 1
+  - m_Path: Armature/Bone_Root/Bone_Pelvis/Bone_Belly/Bone_Chest/Bone_Upperarm_L/Bone_Forearm_L
+    m_Weight: 1
+  - m_Path: Armature/Bone_Root/Bone_Pelvis/Bone_Belly/Bone_Chest/Bone_Upperarm_L/Bone_Forearm_L/Bone_Palm_L
+    m_Weight: 1
+  - m_Path: Armature/Bone_Root/Bone_Pelvis/Bone_Belly/Bone_Chest/Bone_Upperarm_R
+    m_Weight: 1
+  - m_Path: Armature/Bone_Root/Bone_Pelvis/Bone_Belly/Bone_Chest/Bone_Upperarm_R/Bone_Forearm_R
+    m_Weight: 1
+  - m_Path: Armature/Bone_Root/Bone_Pelvis/Bone_Belly/Bone_Chest/Bone_Upperarm_R/Bone_Forearm_R/Bone_Palm_R
+    m_Weight: 1
+  - m_Path: Armature/Bone_Root/Bone_Pelvis/Bone_Thigh_L
+    m_Weight: 0
+  - m_Path: Armature/Bone_Root/Bone_Pelvis/Bone_Thigh_L/Bone_Shin_L
+    m_Weight: 0
+  - m_Path: Armature/Bone_Root/Bone_Pelvis/Bone_Thigh_L/Bone_Shin_L/Bone_Foot_L
+    m_Weight: 0
+  - m_Path: Armature/Bone_Root/Bone_Pelvis/Bone_Thigh_R
+    m_Weight: 0
+  - m_Path: Armature/Bone_Root/Bone_Pelvis/Bone_Thigh_R/Bone_Shin_R
+    m_Weight: 0
+  - m_Path: Armature/Bone_Root/Bone_Pelvis/Bone_Thigh_R/Bone_Shin_R/Bone_Foot_R
+    m_Weight: 0
+  - m_Path: Belly
+    m_Weight: 0
+  - m_Path: Chest
+    m_Weight: 0
+  - m_Path: Elbow_L
+    m_Weight: 0
+  - m_Path: Elbow_R
+    m_Weight: 0
+  - m_Path: Foot_L
+    m_Weight: 0
+  - m_Path: Foot_R
+    m_Weight: 0
+  - m_Path: Forearm_L
+    m_Weight: 0
+  - m_Path: Forearm_R
+    m_Weight: 0
+  - m_Path: Head
+    m_Weight: 0
+  - m_Path: Knee_L
+    m_Weight: 0
+  - m_Path: Knee_R
+    m_Weight: 0
+  - m_Path: Neck
+    m_Weight: 0
+  - m_Path: Palm_L
+    m_Weight: 0
+  - m_Path: Palm_R
+    m_Weight: 0
+  - m_Path: Pelvis
+    m_Weight: 0
+  - m_Path: Shin_L
+    m_Weight: 0
+  - m_Path: Shin_R
+    m_Weight: 0
+  - m_Path: Shoulder_L
+    m_Weight: 0
+  - m_Path: Shoulder_R
+    m_Weight: 0
+  - m_Path: Thigh_L
+    m_Weight: 0
+  - m_Path: Thigh_R
+    m_Weight: 0
+  - m_Path: Thumb_L
+    m_Weight: 0
+  - m_Path: Thumb_R
+    m_Weight: 0
+  - m_Path: Upperarm_L
+    m_Weight: 0
+  - m_Path: Upperarm_R
+    m_Weight: 0
+  - m_Path: Wrist__l
+    m_Weight: 0
+  - m_Path: Wrist_R
+    m_Weight: 0
