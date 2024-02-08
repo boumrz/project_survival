@@ -6,6 +6,8 @@ public class InventoryManager : MonoBehaviour
 {
     public bool isOpen;
     public Transform character;
+    public int slotsCount;
+    public GameObject slotPrefab;
 
     public GameObject UIBG;
     public Transform inventoryPanel;
@@ -13,19 +15,16 @@ public class InventoryManager : MonoBehaviour
     
     public List<InventorySlot> slots;
     
-    private void Awake() 
-    {
-        UIBG.SetActive(true);
-    }
-
     private void Start()
     {
+        slotsCount = 32;
         slots = new List<InventorySlot>();
-        
-        for (int i = 0; i < inventoryPanel.childCount; i++) {
-            if (inventoryPanel.GetChild(i).GetComponent<InventorySlot>() != null) {
-                slots.Add(inventoryPanel.GetChild(i).GetComponent<InventorySlot>());
-            } 
+
+        for (int i = 0; i < slotsCount; i++) {
+            var currentSlot = Instantiate(slotPrefab, inventoryPanel);
+            currentSlot.GetComponent<InventorySlot>().isEmpty = true;
+            
+            slots.Add(currentSlot.GetComponent<InventorySlot>());
         }
         
         UIBG.SetActive(false);
@@ -68,9 +67,6 @@ public class InventoryManager : MonoBehaviour
 
     private void AddItem(ItemScriptableObject _item, int _amount) 
     {
-        Debug.Log("_item " + _item);
-        Debug.Log("_amount " + _amount);
-        Debug.Log("slots " + slots);
         foreach(InventorySlot slot in slots) 
         {
             if (slot.item == _item) 
